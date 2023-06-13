@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Java学习路线1234567首先要学习Java SE，掌握Java语言本身、Java核心开发技术以及Java标准库的使用；如果继续学习Java EE，那么Spring框架、数据库开发、分布式架构就是需要学习的；如果要学习大数据开发，那么Hadoop、Spark、Flink这些大数据平台就是需要学习的，他们都基于Java或Scala开发；如果想要学习移动开发，那么就深入Android平台，掌握An">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 学习 02">
+<meta property="og:url" content="https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/index.html">
+<meta property="og:site_name" content="whale0k">
+<meta property="og:description" content="Java学习路线1234567首先要学习Java SE，掌握Java语言本身、Java核心开发技术以及Java标准库的使用；如果继续学习Java EE，那么Spring框架、数据库开发、分布式架构就是需要学习的；如果要学习大数据开发，那么Hadoop、Spark、Flink这些大数据平台就是需要学习的，他们都基于Java或Scala开发；如果想要学习移动开发，那么就深入Android平台，掌握An">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-13T12:58:28.000Z">
+<meta property="article:modified_time" content="2023-06-13T16:00:36.001Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Java 学习 02</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2023/06/14/Notes/Java-%E5%AD%A6%E4%B9%A0-03/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-01/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/&text=Java 学习 02"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/&title=Java 学习 02"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/&is_video=false&description=Java 学习 02"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Java 学习 02&body=Check out this article: https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/&title=Java 学习 02"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/&title=Java 学习 02"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/&title=Java 学习 02"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/&title=Java 学习 02"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/&name=Java 学习 02&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/&t=Java 学习 02"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF"><span class="toc-number">1.</span> <span class="toc-text">Java学习路线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A"><span class="toc-number">2.</span> <span class="toc-text">Java名词解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2"><span class="toc-number">3.</span> <span class="toc-text">Java环境部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">4.</span> <span class="toc-text">Java基础知识</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Java 学习 02
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">John Doe</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-06-13T12:58:28.000Z" class="dt-published" itemprop="datePublished">2023-06-13</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Note/">Note</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/java/" rel="tag">java</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="Java学习路线"><a href="#Java学习路线" class="headerlink" title="Java学习路线"></a>Java学习路线</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">首先要学习Java SE，掌握Java语言本身、Java核心开发技术以及Java标准库的使用；</span><br><span class="line"></span><br><span class="line">如果继续学习Java EE，那么Spring框架、数据库开发、分布式架构就是需要学习的；</span><br><span class="line"></span><br><span class="line">如果要学习大数据开发，那么Hadoop、Spark、Flink这些大数据平台就是需要学习的，他们都基于Java或Scala开发；</span><br><span class="line"></span><br><span class="line">如果想要学习移动开发，那么就深入Android平台，掌握Android App开发。</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Java名词解释"><a href="#Java名词解释" class="headerlink" title="Java名词解释"></a>Java名词解释</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JDK：Java Development Kit</span><br><span class="line">JRE：Java Runtime Environment</span><br><span class="line">简单地说，JRE就是运行Java字节码的虚拟机。但是，如果只有Java源码，要编译成Java字节码，就需要JDK，因为JDK除了包含JRE，还提供了编译器、调试器等开发工具。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> ┌─    ┌──────────────────────────────────┐</span><br><span class="line"> │     │     Compiler, debugger, etc.     │</span><br><span class="line"> │     └──────────────────────────────────┘</span><br><span class="line">JDK ┌─ ┌──────────────────────────────────┐</span><br><span class="line"> │  │  │                                  │</span><br><span class="line"> │ JRE │      JVM + Runtime Library       │</span><br><span class="line"> │  │  │                                  │</span><br><span class="line"> └─ └─ └──────────────────────────────────┘</span><br><span class="line">       ┌───────┐┌───────┐┌───────┐┌───────┐</span><br><span class="line">       │Windows││ Linux ││ macOS ││others │</span><br><span class="line">       └───────┘└───────┘└───────┘└───────┘</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JVM：Java Virtual Machine，Java虚拟机</span><br><span class="line">JSR规范：Java Specification Request</span><br><span class="line">JCP组织：Java Community Process</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Java环境部署"><a href="#Java环境部署" class="headerlink" title="Java环境部署"></a>Java环境部署</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">安装jdk: https://www.oracle.com/java/technologies/downloads/ 			--具体步骤省略</span><br><span class="line"></span><br><span class="line">java bin目录可执行文件:</span><br><span class="line">java：这个可执行程序其实就是JVM，运行Java程序，就是启动JVM，然后让JVM执行指定的编译后的代码；</span><br><span class="line">javac：这是Java的编译器，它用于把Java源码文件（以.java后缀结尾）编译为Java字节码文件（以.class后缀结尾）；</span><br><span class="line">jar：用于把一组.class文件打包成一个.jar文件，便于发布；</span><br><span class="line">javadoc：用于从Java源码中自动提取注释并生成文档；</span><br><span class="line">jdb：Java调试器，用于开发阶段的运行调试。 </span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Java基础知识"><a href="#Java基础知识" class="headerlink" title="Java基础知识"></a>Java基础知识</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Java语法：了解Java的基本语法规则，包括变量声明、数据类型、运算符、控制流程（条件语句和循环语句）、方法和类的定义等。</span><br><span class="line"></span><br><span class="line">数据类型和变量：掌握Java的基本数据类型（如整型、浮点型、字符型、布尔型）以及引用数据类型（如字符串、数组、对象），了解如何声明和使用变量。</span><br><span class="line"></span><br><span class="line">类和对象：理解面向对象编程的概念，学习如何定义类、创建对象，并使用类的属性和方法进行操作。</span><br><span class="line"></span><br><span class="line">方法和函数：学习如何定义和调用方法（也称为函数），了解方法的参数传递、返回值和重载等概念。</span><br><span class="line"></span><br><span class="line">控制流程：掌握条件语句（如if语句、switch语句）和循环语句（如for循环、while循环、do-while循环），以控制程序的执行流程。</span><br><span class="line"></span><br><span class="line">异常处理：了解Java的异常处理机制，学习如何捕获和处理异常，并使用try-catch-finally块来编写健壮的代码。</span><br><span class="line"></span><br><span class="line">数组和集合：学习如何创建和使用数组，了解常见的集合类（如List、Set、Map）以及它们的特点和用法。</span><br><span class="line"></span><br><span class="line">输入和输出：掌握Java的输入输出流（IO）操作，包括标准输入输出、文件读写、序列化等。</span><br><span class="line"></span><br><span class="line">继承和多态：理解继承和多态的概念，学习如何创建子类和父类之间的关系，以及如何实现方法的覆盖和多态性。</span><br><span class="line"></span><br><span class="line">包和访问控制：了解Java的包（package）概念，学习如何组织和管理Java类，以及如何使用访问修饰符（public、private、protected）控制成员的可见性。</span><br></pre></td></tr></table></figure>
+
+
+
+<p>[廖雪峰]: <a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1252599548343744/1280507291631649">https://www.liaoxuefeng.com/wiki/1252599548343744/1280507291631649</a>	“Java简介”</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF"><span class="toc-number">1.</span> <span class="toc-text">Java学习路线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A"><span class="toc-number">2.</span> <span class="toc-text">Java名词解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2"><span class="toc-number">3.</span> <span class="toc-text">Java环境部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">4.</span> <span class="toc-text">Java基础知识</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/&text=Java 学习 02"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/&title=Java 学习 02"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/&is_video=false&description=Java 学习 02"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Java 学习 02&body=Check out this article: https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/&title=Java 学习 02"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/&title=Java 学习 02"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/&title=Java 学习 02"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/&title=Java 学习 02"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/&name=Java 学习 02&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jysnk.github.io/2023/06/13/Notes/Java-%E5%AD%A6%E4%B9%A0-02/&t=Java 学习 02"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2023
+    John Doe
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
