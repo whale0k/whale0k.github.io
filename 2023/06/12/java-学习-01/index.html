@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Java背景1231995年推出的高级的编程语言2009年，Sun公司被甲骨文公司收购截至2023年6月,java排行编程语言的第四名,占比11.28%,前三情况是python:12.46%,c:12.37%,c++:12.36%    Java功能1234567891011121314151617应用程序开发： Java 可用于开发各种类型的应用程序，包括桌面应用程序、移动应用程序和企业级应用程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java 学习 01">
+<meta property="og:url" content="https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/index.html">
+<meta property="og:site_name" content="whale0k">
+<meta property="og:description" content="Java背景1231995年推出的高级的编程语言2009年，Sun公司被甲骨文公司收购截至2023年6月,java排行编程语言的第四名,占比11.28%,前三情况是python:12.46%,c:12.37%,c++:12.36%    Java功能1234567891011121314151617应用程序开发： Java 可用于开发各种类型的应用程序，包括桌面应用程序、移动应用程序和企业级应用程">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-12T15:57:43.000Z">
+<meta property="article:modified_time" content="2023-06-12T16:30:12.667Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>java 学习 01</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/05/21/hello-world/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/&text=java 学习 01"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/&title=java 学习 01"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/&is_video=false&description=java 学习 01"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=java 学习 01&body=Check out this article: https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/&title=java 学习 01"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/&title=java 学习 01"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/&title=java 学习 01"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/&title=java 学习 01"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/&name=java 学习 01&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/&t=java 学习 01"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">Java背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%8A%9F%E8%83%BD"><span class="toc-number">2.</span> <span class="toc-text">Java功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E7%89%B9%E7%82%B9"><span class="toc-number">3.</span> <span class="toc-text">Java特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E7%89%88%E6%9C%AC"><span class="toc-number">4.</span> <span class="toc-text">Java版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E6%A1%86%E6%9E%B6"><span class="toc-number">5.</span> <span class="toc-text">Java框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E7%8E%AF%E5%A2%83"><span class="toc-number">6.</span> <span class="toc-text">Java环境</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        java 学习 01
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">John Doe</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-06-12T15:57:43.000Z" class="dt-published" itemprop="datePublished">2023-06-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="Java背景"><a href="#Java背景" class="headerlink" title="Java背景"></a>Java背景</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1995年推出的高级的编程语言</span><br><span class="line">2009年，Sun公司被甲骨文公司收购</span><br><span class="line">截至2023年6月,java排行编程语言的第四名,占比11.28%,前三情况是python:12.46%,c:12.37%,c++:12.36%</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Java功能"><a href="#Java功能" class="headerlink" title="Java功能"></a>Java功能</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">应用程序开发： Java 可用于开发各种类型的应用程序，包括桌面应用程序、移动应用程序和企业级应用程序。Java 的跨平台特性使得开发的应用程序可以在不同的操作系统上运行。</span><br><span class="line"></span><br><span class="line">Web 开发： Java 提供了多个用于 Web 开发的框架和技术，例如 Java Servlet、JavaServer Pages (JSP)、JavaServer Faces (JSF) 和 Spring Framework。这些工具可以用于构建动态的、可扩展的 Web 应用程序。</span><br><span class="line"></span><br><span class="line">后端开发： Java 在后端开发中得到广泛应用。Java EE（Java Enterprise Edition）提供了一套丰富的 API 和工具，用于构建企业级应用程序，包括事务管理、安全性、数据库访问和消息传递等。</span><br><span class="line"></span><br><span class="line">大数据处理： Java 与大数据处理框架（如 Apache Hadoop 和 Apache Spark）结合使用，可以处理和分析海量数据。Java 提供了丰富的库和工具，用于处理和操作大数据集。</span><br><span class="line"></span><br><span class="line">Android 开发： Java 是 Android 平台的主要编程语言。开发者可以使用 Java 编写 Android 应用程序，利用 Android SDK 提供的工具和库构建功能丰富的移动应用。</span><br><span class="line"></span><br><span class="line">游戏开发： Java 提供了多个游戏开发框架和库，如 JavaFX 和 LibGDX。开发者可以使用 Java 创建各种类型的游戏，从简单的图形游戏到复杂的多人在线游戏。</span><br><span class="line"></span><br><span class="line">嵌入式系统： Java 可以应用于嵌入式系统开发，如智能家居、车载系统、工业自动化等。Java ME（Java Micro Edition）是专门针对嵌入式设备的版本。</span><br><span class="line"></span><br><span class="line">金融和科学计算： Java 提供了丰富的数学库和科学计算工具，适用于金融领域的计算和分析。</span><br><span class="line"></span><br><span class="line">工具开发： Java 的强大性能和丰富的库使其成为开发各种工具和应用程序的理想选择，包括集成开发环境（IDE）、构建工具、测试工具等。</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Java特点"><a href="#Java特点" class="headerlink" title="Java特点"></a>Java特点</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">简单性：Java语言设计简洁，易于学习和使用。</span><br><span class="line">面向对象：Java是一种面向对象的编程语言，支持封装、继承和多态等概念。</span><br><span class="line">平台无关性：Java程序可以在不同的操作系统和硬件平台上运行。</span><br><span class="line">安全性：Java提供了安全性机制，包括内置的安全性管理器和字节码验证器，以保护系统免受恶意代码的攻击。</span><br><span class="line">高性能：Java通过即时编译器（Just-In-Time Compiler，JIT）实现高性能执行。</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Java版本"><a href="#Java版本" class="headerlink" title="Java版本"></a>Java版本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Java SE (Standard Edition)：Java SE 是 Java 的标准版，包含了开发和部署基本的 Java 应用程序所需的核心库和工具。它提供了用于编写桌面应用程序、命令行工具等的基本功能和类库。</span><br><span class="line"></span><br><span class="line">Java EE (Enterprise Edition)：Java EE 是面向企业级应用程序开发的 Java 平台。它在 Java SE 的基础上提供了更多的库和工具，用于构建分布式、可扩展、安全和事务性的企业应用程序。Java EE 包括多个规范和技术，如 Servlet、JSP、EJB、JMS 等。</span><br><span class="line"></span><br><span class="line">Java ME (Micro Edition)：Java ME 是专为嵌入式设备和移动设备开发的 Java 平台。它提供了精简的 Java 运行环境和相关库，以满足资源受限的设备上的应用程序开发需求。</span><br><span class="line"></span><br><span class="line">Android 开发：虽然 Android 开发使用的编程语言也是 Java，但它在应用层面有一些特殊性。Android 开发使用的是基于 Java 的 Android SDK，该 SDK 提供了特定于 Android 平台的库和工具，用于构建 Android 应用程序。</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Java框架"><a href="#Java框架" class="headerlink" title="Java框架"></a>Java框架</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Spring框架：Spring是一个综合性的企业级应用开发框架，提供了广泛的功能和模块，包括依赖注入（Dependency Injection）、面向切面编程（Aspect-Oriented Programming）、数据访问、事务管理等。Spring使得开发者能够更轻松地构建可维护、可扩展的Java应用程序和服务。</span><br><span class="line"></span><br><span class="line">Hibernate框架：Hibernate是一个优秀的对象关系映射（ORM）框架，它简化了Java应用程序与关系型数据库之间的数据持久化操作。Hibernate允许开发者使用面向对象的方式来处理数据库操作，而不需要直接编写SQL语句，从而提高了开发效率和可维护性。</span><br><span class="line"></span><br><span class="line">Apache Struts框架：Struts是一个基于MVC（Model-View-Controller）模式的Web应用程序开发框架。它提供了一套规范和组件，帮助开发者将应用程序的业务逻辑、数据和用户界面进行分离。Struts框架旨在简化Web应用程序的开发，并提供了丰富的功能，如表单验证、国际化支持等。</span><br><span class="line"></span><br><span class="line">JavaServer Faces (JSF)框架：JSF是一个用于构建Java Web应用程序的组件化框架。它提供了一套用于创建用户界面的组件库，并通过事件驱动的模型处理用户输入。JSF具有可重用性高、可扩展性强的特点，适合构建复杂的Web应用程序。</span><br><span class="line"></span><br><span class="line">Apache Wicket框架：Wicket是一个面向对象的Web应用程序开发框架，强调可重用性和可测试性。它使用Java组件和面向对象的方式来构建Web界面，并提供了易于测试和维护的代码结构。</span><br><span class="line"></span><br><span class="line">JavaFX框架：JavaFX是用于构建富客户端应用程序和用户界面的框架。它提供了丰富的图形和多媒体功能，具有跨平台性，可在不同的操作系统上运行。JavaFX支持通过FXML或纯Java代码编写界面，使开发者能够创建吸引人的用户界面。</span><br><span class="line"></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Java环境"><a href="#Java环境" class="headerlink" title="Java环境"></a>Java环境</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">集成开发环境（IDE）：使用IDE可以提供一个集成的开发环境，用于编写、调试和测试Java代码。一些常见的Java IDE包括Eclipse、IntelliJ IDEA和NetBeans。这些IDE提供了代码编辑器、调试器、自动完成、版本控制等功能，可以大大提高开发效率。</span><br><span class="line"></span><br><span class="line">构建工具：构建工具用于自动化构建、测试和部署Java应用程序。最常用的Java构建工具是Apache Maven和Gradle。它们可以管理项目依赖、编译源代码、运行单元测试、打包可执行文件等。</span><br><span class="line"></span><br><span class="line">版本控制系统：版本控制系统用于管理和跟踪源代码的变化。常见的版本控制系统包括Git和SVN。通过版本控制系统，团队成员可以协同工作、合并代码变更，并保留历史记录和版本信息。</span><br><span class="line"></span><br><span class="line">数据库：Java应用程序通常需要与数据库进行交互来存储和检索数据。一些常见的关系型数据库包括MySQL、Oracle和PostgreSQL，而一些常见的非关系型数据库包括MongoDB和Redis。Java提供了多种方式来连接和操作数据库，如JDBC（Java Database Connectivity）和ORM框架（如Hibernate）。</span><br><span class="line"></span><br><span class="line">Web服务器和应用服务器：用于部署和运行Java Web应用程序的服务器。一些常见的Java Web服务器包括Apache Tomcat和Jetty，而一些常见的Java应用服务器包括Apache TomEE和WildFly。这些服务器提供了Servlet容器和Java EE容器，用于处理Web请求和运行Java Web应用程序。</span><br><span class="line"></span><br><span class="line">测试框架：在Java开发中，测试是一个重要的环节。JUnit是最流行的Java单元测试框架，用于编写和执行单元测试。此外，还有其他测试框架，如TestNG和Mockito，用于功能测试、集成测试和模拟对象</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">Java背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%8A%9F%E8%83%BD"><span class="toc-number">2.</span> <span class="toc-text">Java功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E7%89%B9%E7%82%B9"><span class="toc-number">3.</span> <span class="toc-text">Java特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E7%89%88%E6%9C%AC"><span class="toc-number">4.</span> <span class="toc-text">Java版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E6%A1%86%E6%9E%B6"><span class="toc-number">5.</span> <span class="toc-text">Java框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E7%8E%AF%E5%A2%83"><span class="toc-number">6.</span> <span class="toc-text">Java环境</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/&text=java 学习 01"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/&title=java 学习 01"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/&is_video=false&description=java 学习 01"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=java 学习 01&body=Check out this article: https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/&title=java 学习 01"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/&title=java 学习 01"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/&title=java 学习 01"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/&title=java 学习 01"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/&name=java 学习 01&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jysnk.github.io/2023/06/12/java-%E5%AD%A6%E4%B9%A0-01/&t=java 学习 01"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2023
+    John Doe
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
