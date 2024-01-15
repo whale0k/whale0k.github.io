@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="​	在当今的数字化时代，安全对于任何组织而言都至关重要。Linux作为一种流行的操作系统，被广泛用于服务器和云环境中，因此必须重视Linux系统的安全性。然而，即使我们采取了一系列的预防措施，仍然无法保证系统的绝对安全。在面对安全事件时，快速而有效的应急响应是至关重要的。本文将介绍Linux应急响应的重要性以及一些关键步骤和最佳实践。 应急响应参考规范《中华人民共和国互联网网络安全应急预案》《中华">
+<meta property="og:type" content="article">
+<meta property="og:title" content="攻防渗透思路分享">
+<meta property="og:url" content="https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/index.html">
+<meta property="og:site_name" content="whale0k">
+<meta property="og:description" content="​	在当今的数字化时代，安全对于任何组织而言都至关重要。Linux作为一种流行的操作系统，被广泛用于服务器和云环境中，因此必须重视Linux系统的安全性。然而，即使我们采取了一系列的预防措施，仍然无法保证系统的绝对安全。在面对安全事件时，快速而有效的应急响应是至关重要的。本文将介绍Linux应急响应的重要性以及一些关键步骤和最佳实践。 应急响应参考规范《中华人民共和国互联网网络安全应急预案》《中华">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-10T06:40:22.000Z">
+<meta property="article:modified_time" content="2024-01-15T11:53:32.830Z">
+<meta property="article:author" content="whale0k">
+<meta property="article:tag" content="应急响应">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>攻防渗透思路分享</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2023/07/15/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Bwindows/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/06/10/test/hello-world/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/&text=攻防渗透思路分享"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/&title=攻防渗透思路分享"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/&is_video=false&description=攻防渗透思路分享"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=攻防渗透思路分享&body=Check out this article: https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/&title=攻防渗透思路分享"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/&title=攻防渗透思路分享"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/&title=攻防渗透思路分享"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/&title=攻防渗透思路分享"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/&name=攻防渗透思路分享&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/&t=攻防渗透思路分享"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%8F%82%E8%80%83%E8%A7%84%E8%8C%83"><span class="toc-number">1.</span> <span class="toc-text">应急响应参考规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94PDCERF%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">应急响应PDCERF模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E6%AC%B2%E5%96%84%E5%85%B6%E4%BA%8B%EF%BC%8C%E5%BF%85%E5%85%88%E5%88%A9%E5%85%B6%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">工欲善其事，必先利其器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%BF%AB%E9%80%9F%E6%8E%92%E6%9F%A5"><span class="toc-number">4.</span> <span class="toc-text">linux应急响应快速排查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#linux%E5%B8%B8%E8%A7%81%E6%8E%92%E6%9F%A5%E5%91%BD%E4%BB%A4"><span class="toc-number">4.1.</span> <span class="toc-text">linux常见排查命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2"><span class="toc-number">4.2.</span> <span class="toc-text">系统信息查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-number">4.3.</span> <span class="toc-text">用户信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E9%A1%B9"><span class="toc-number">4.4.</span> <span class="toc-text">启动项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">4.5.</span> <span class="toc-text">计划任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E6%9F%A5ssh"><span class="toc-number">4.6.</span> <span class="toc-text">排查ssh</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E8%BF%9B%E7%A8%8B%E6%8E%92%E6%9F%A5"><span class="toc-number">5.</span> <span class="toc-text">Linux进程排查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E6%9F%A5%E8%BF%9B%E7%A8%8B"><span class="toc-number">5.1.</span> <span class="toc-text">排查进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%9F%E8%BF%9B%E8%BF%9B%E7%A8%8B%E5%AF%B9%E5%BA%94%E6%96%87%E4%BB%B6"><span class="toc-number">5.2.</span> <span class="toc-text">跟进进程对应文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%BD%AE%E8%BF%9B%E7%A8%8B"><span class="toc-number">5.3.</span> <span class="toc-text">处置进程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E6%9C%8D%E5%8A%A1%E6%8E%92%E6%9F%A5"><span class="toc-number">6.</span> <span class="toc-text">Linux服务排查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E6%96%87%E4%BB%B6%E6%8E%92%E6%9F%A5"><span class="toc-number">7.</span> <span class="toc-text">Linux文件排查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linux%E6%97%A5%E5%BF%97%E6%9F%A5%E7%9C%8B"><span class="toc-number">8.</span> <span class="toc-text">linux日志查看</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="toc-number">8.0.1.</span> <span class="toc-text">相关命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#who%E5%91%BD%E4%BB%A4"><span class="toc-number">8.0.1.1.</span> <span class="toc-text">who命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#w%E5%91%BD%E4%BB%A4"><span class="toc-number">8.0.1.2.</span> <span class="toc-text">w命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#users%E5%91%BD%E4%BB%A4"><span class="toc-number">8.0.1.3.</span> <span class="toc-text">users命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#last%E5%91%BD%E4%BB%A4"><span class="toc-number">8.0.1.4.</span> <span class="toc-text">last命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ac%E5%91%BD%E4%BB%A4"><span class="toc-number">8.0.1.5.</span> <span class="toc-text">ac命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#lastlog%E5%91%BD%E4%BB%A4"><span class="toc-number">8.0.1.6.</span> <span class="toc-text">lastlog命令</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E7%BD%91%E7%BB%9C%E6%8E%92%E6%9F%A5"><span class="toc-number">9.</span> <span class="toc-text">Linux网络排查</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        攻防渗透思路分享
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">whale0k</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-06-10T06:40:22.000Z" class="dt-published" itemprop="datePublished">2023-06-10</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" rel="tag">应急响应</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>​	在当今的数字化时代，安全对于任何组织而言都至关重要。Linux作为一种流行的操作系统，被广泛用于服务器和云环境中，因此必须重视Linux系统的安全性。然而，即使我们采取了一系列的预防措施，仍然无法保证系统的绝对安全。在面对安全事件时，快速而有效的应急响应是至关重要的。本文将介绍Linux应急响应的重要性以及一些关键步骤和最佳实践。</p>
+<h2 id="应急响应参考规范"><a href="#应急响应参考规范" class="headerlink" title="应急响应参考规范"></a>应急响应参考规范</h2><p>《中华人民共和国互联网网络安全应急预案》<br>《中华人民共和国突发事件应对法》<br>《中华人民共和国网络安全法》<br>《公共互联网网络安全突发事件应急预案》工信部网安〔2017〕281号<br>《国家突发公共事件总体应急预案》<br>《信息安全事件管理指南》GB&#x2F;Z 20985—2007<br>《信息系统灾难恢复规范》GB&#x2F;T 20988—2007<br>《信息安全事件分类分级指南》GB&#x2F;Z 20986—2007<br>《信息安全应急响应计划规范》GB&#x2F;T 2024363-2009<br>《信息安全事件管理指南》GB&#x2F;Z 20985—2007<br>《国家网络安全事件应急预案》中网办发文〔2017〕4号<br>《信息安全技术 信息安全风险处理实施指南》</p>
+<h2 id="应急响应PDCERF模型"><a href="#应急响应PDCERF模型" class="headerlink" title="应急响应PDCERF模型"></a>应急响应PDCERF模型</h2><p>PDCERF 方法论是一种防范使用的方法，其将应急响应分成六个阶段，分别是准备阶段（Preparation）、检测阶段（Detection）、抑制阶段（Containment）、根除阶段（Eradication）、恢复阶段（Reconvery）、总结阶段（Follow-up）。</p>
+<ul>
+<li><p>准备阶段：</p>
+<p>准备阶段以预防为主。</p>
+<ul>
+<li>主要工作涉及识别机构、企业的风险，建立安全政策，建立协作体系和应急制度</li>
+<li>按照安全政策配置安全设备和软件，为应急响应与恢复准备主机</li>
+<li>依照网络安全措施，进行一些准备工作，例如，扫描、风险分析、打补丁等</li>
+<li>如有条件且得到许可，可建立监控设施，建立数据汇总分析体系，制定能够实现应急响应目标的策略和规程，建立信息沟通渠道，建立能够集合起来处理突发事件的体系</li>
+</ul>
+</li>
+<li><p>检测阶段：</p>
+<p>检测阶段主要检测事件是已经发生的还是正在进行中的，以及事件产生的原因</p>
+<ul>
+<li>确定事件性质和影响的严重程度，以及预计采用什么样的专用资源来修复</li>
+<li>选择检测工具，分析异常现象，提高系统或网络行为的监控级别，估计安全事件的范围</li>
+<li>通过汇总，查看是否发生了全网的大规模事件，从而确定应急等级及其对应的应急方案</li>
+</ul>
+</li>
+<li><p>抑制阶段：抑制阶段的主要任务是限制攻击 &#x2F; 破坏波及的范围，同时也是在降低潜在的损失。所有的抑制活动都是建立在能正确检测事件的基础上的，抑制活动必须结合检测阶段发现的安全事件的现象、性质、范围等属性，制定并实施正确的抑制策略。</p>
+</li>
+<li><p>根除阶段：根除阶段的主要任务是通过事件分析找出根源并彻底根除，以避免攻击者再次使用相同的手段攻击系统，引发安全事件。并加强宣传，公布危害性和解决办法，呼吁用户解决终端问题。加强监测工作，发现和清理行业与重点部门问题。</p>
+</li>
+<li><p>恢复阶段：</p>
+<p>恢复阶段的主要任务是把被破坏的信息彻底还原到正常运作状态。</p>
+<ul>
+<li>确定使系统恢复正常的需求内容和时间表，从可信的备份介质中恢复用户数据，打开系统和应用服务，恢复系统网络连接，验证恢复系统，观察其他的扫描，探测可能表示入侵者再次侵袭的信号</li>
+<li>一般来说，要想成功地恢复被破坏的系统，需要干净的备份系统，编制并维护系统恢复的操作手册，而且在系统重装后需要对系统进行全面的安全加固</li>
+</ul>
+</li>
+<li><p>总结阶段：总结阶段的主要任务是回顾并整合应急响应过程的相关信息，进行事后分析总结和修订安全计划、政策、程序，并进行训练，以防止入侵的再次发生。基于入侵的严重性和影响，确定是否进行新的风险分析，给系统和网络资产制作一个新的目录清单。这一阶段的工作对于准备阶段工作的开展起到重要的支持作用。</p>
+</li>
+</ul>
+<h2 id="工欲善其事，必先利其器"><a href="#工欲善其事，必先利其器" class="headerlink" title="工欲善其事，必先利其器"></a>工欲善其事，必先利其器</h2><p>病毒查杀</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clamav		开源 (GPLv2) 防病毒工具包（思科）		http://www.clamav.net/download.html	</span><br></pre></td></tr></table></figure>
+
+<p>信息收集</p>
+<figure class="highlight plaintext"><figcaption><span>脚本化本地 Linux 枚举和权限升级检查</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Emergency	信息收集脚本</span><br><span class="line">GScan		主机排查</span><br><span class="line">LinuxCheck	Linux应急处置/信息搜集/漏洞检测工具</span><br></pre></td></tr></table></figure>
+
+<p>日志分析</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FastIR Artifacts		主机上使用的取证工件收集器</span><br></pre></td></tr></table></figure>
+
+<p>其它</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chkrootkit		rootkit 检测		http://www.chkrootkit.org</span><br><span class="line">rkhunter		rootkit 排查		http://rkhunter.sourceforge.net</span><br><span class="line">busybox			linux集成工具</span><br></pre></td></tr></table></figure>
+
+<h2 id="linux应急响应快速排查"><a href="#linux应急响应快速排查" class="headerlink" title="linux应急响应快速排查"></a>linux应急响应快速排查</h2><h3 id="linux常见排查命令"><a href="#linux常见排查命令" class="headerlink" title="linux常见排查命令"></a>linux常见排查命令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">获取信息：</span><br><span class="line">top</span><br><span class="line">ps</span><br><span class="line">lsof</span><br><span class="line">pstree</span><br><span class="line">history</span><br><span class="line"></span><br><span class="line">处置命令：</span><br><span class="line">kill</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="系统信息查询"><a href="#系统信息查询" class="headerlink" title="系统信息查询"></a>系统信息查询</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lscpu		cpu信息</span><br><span class="line">uname-a		操作系统信息（或者 cat /proc/version cat /etc/issue）</span><br><span class="line">lsmod		模块信息</span><br><span class="line">echo $PATH	查看环境变量</span><br></pre></td></tr></table></figure>
+
+<h3 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/passwd									查看系统所有用户信息</span><br><span class="line">awk -F: &#x27;&#123;if($3==0)print $1&#125;&#x27; /etc/passwd		查询uid为0的用户</span><br><span class="line">cat /etc/passwd | grep &#x27;bin/bash&#x27;				查看可登录用户</span><br><span class="line">lastb											查看用户错误的登录信息</span><br><span class="line">lastlog											查看所有用户最后的登录</span><br><span class="line">last											查看用户最近的登录信息</span><br><span class="line">who												查看当前用户登录系统情况</span><br><span class="line">awk -F:	&#x27;length($2) ==0&#123;print $1&#125;&#x27; /etc/shadow	查看空口令账户</span><br><span class="line">cat /etc/shadow									查看用户的密码信息</span><br><span class="line"></span><br><span class="line">######</span><br><span class="line">shadow中的时间需解码：date -d &#x27;1970-01-01 19702 days&#x27;</span><br><span class="line">linux中UID是0表示其用户级别和root是一样的。</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动项"><a href="#启动项" class="headerlink" title="启动项"></a>启动项</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/etc/rc(0-6,s,).d </span><br><span class="line">不同的脚本文件通过不同的字母和数字来标识不同级别的工作模式</span><br><span class="line">0: 关机</span><br><span class="line">1: 单用户模式（用于系统维护，没有网络服务）</span><br><span class="line">2: 多用户模式，没有网络服务</span><br><span class="line">3: 多用户模式，带有基本的网络服务</span><br><span class="line">4: 未定义，可以由用户自定义</span><br><span class="line">5: 多用户模式，带有图形界面（全图形桌面模式）</span><br><span class="line">6: 重启</span><br><span class="line">s: 单用户模式</span><br></pre></td></tr></table></figure>
+
+<h3 id="计划任务"><a href="#计划任务" class="headerlink" title="计划任务"></a>计划任务</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">crontab -l		列出当前计划任务</span><br><span class="line">crontab -e		编辑计划任务</span><br><span class="line">crontab -r		删除当前计划任务</span><br><span class="line">ls /etc/cron*</span><br></pre></td></tr></table></figure>
+
+<h3 id="排查ssh"><a href="#排查ssh" class="headerlink" title="排查ssh"></a>排查ssh</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">分析sshd文件,是否包括IP信息</span><br><span class="line">strings /usr/sbin/sshd | grep &#x27;[1-9]&#123;1,3&#125;.[1-9]&#123;1,3&#125;.&#x27;</span><br><span class="line"></span><br><span class="line">排查公钥情况</span><br><span class="line">/etc/ssh  	 ~/.ssh/  	查看相关目录是否存在可疑公钥</span><br></pre></td></tr></table></figure>
+
+<h2 id="Linux进程排查"><a href="#Linux进程排查" class="headerlink" title="Linux进程排查"></a>Linux进程排查</h2><h3 id="排查进程"><a href="#排查进程" class="headerlink" title="排查进程"></a>排查进程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">top -c -o %CPU		获取CPU占用情况，并显示进程的命令行参数（以cpu占用排序）</span><br><span class="line">top -c -o %MEM		获取内存占用情况，并显示进程的命令行参数（以内存占用排序）</span><br><span class="line"></span><br><span class="line">ps -eo pid,ppid,%mem,%cpu,cmd --sort=-%cpu | head -n 5		获取cpu占用前5的进程信息</span><br><span class="line">ps -eo pid,ppid,%mem,%cpu,cmd --sort=-%mem | head -n 5		获取内存占用前5的进程信息</span><br></pre></td></tr></table></figure>
+
+<h3 id="跟进进程对应文件"><a href="#跟进进程对应文件" class="headerlink" title="跟进进程对应文件"></a>跟进进程对应文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ls -alt /proc/&#123;pid&#125;		查询其对应的可执行程序</span><br><span class="line">lsof -p &#123;pid&#125;			查看进程所打开的文件</span><br><span class="line"></span><br><span class="line">/proc 准确来说叫做进程信息伪文件系统，可以理解伪位于内存中的伪文件系统，它下边的保存的不是真正的文件和目录，而是一些运行时的信息，比如说 mermory，disk io 比如说 device mount 情况，那当黑客使用了某些进程隐藏的手段，我们使用 ps 或者 pstre 或者 top 是无法看见进程的，但是她加载到了内存中，说明它正在跑，正在运行，我们就可以通过 ls -alth /proc/*/exe 去发现它。</span><br><span class="line"></span><br><span class="line">kill -p &#123;pid&#125;	结束进程</span><br></pre></td></tr></table></figure>
+
+<h3 id="处置进程"><a href="#处置进程" class="headerlink" title="处置进程"></a>处置进程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kill -9 pid		杀死指定进程，但子进程不会被杀死</span><br><span class="line">kill -9 -pid	杀掉该进程组，子进程也会杀死</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>top命令扩展</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-b 批处理				</span><br><span class="line">-c 显示完整的命令</span><br><span class="line">-I 忽略失效过程			</span><br><span class="line">-s 3 保密模式</span><br><span class="line">-S 累积模式 </span><br><span class="line">-i &lt;时间&gt; 设置间隔时间</span><br><span class="line">-u &lt;用户名&gt; 指定用户名 </span><br><span class="line">-p &lt;进程号&gt; 指定进程</span><br><span class="line">-n &lt;次数&gt; 循环显示的次数 </span><br></pre></td></tr></table></figure>
+
+<p>lsof命令扩展</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lsof 			// 不加参数，列出目前进程使用的所有文件信息</span><br><span class="line">lsof 			// 接文件名，查看谁正在使用这个文件</span><br><span class="line">lsof -p pid 	// 该 pid 的进程打开了什么文件</span><br><span class="line">lsof -i tcp:80 	// 冒号之前是传输控制协议，之后是想要过滤的端</span><br></pre></td></tr></table></figure>
+
+<p>ps命令扩展</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-e：显示进程使用的环境变量</span><br><span class="line">-f：显示 UID,PPIP,C 与 STIME</span><br><span class="line">-a 显示所有用户的所有进程信息</span><br><span class="line">-u 指定用户的所有进程</span><br><span class="line">-x 列出当前所有的进程。默认如果只键入 ps -x ，只会输出PID、TTY、STAT、TIME、COMMAND 字段</span><br></pre></td></tr></table></figure>
+
+<p>pstree</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pstree // 显示的是简略版的进程关系树</span><br><span class="line">pstree -p // 显示所有进程关系树的 pid</span><br></pre></td></tr></table></figure>
+
+<h2 id="Linux服务排查"><a href="#Linux服务排查" class="headerlink" title="Linux服务排查"></a>Linux服务排查</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service --status-all | more			查看当前主机运行的服务</span><br><span class="line">chkconfig --list					查看当前主机运行的服务(部分主机)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Linux文件排查"><a href="#Linux文件排查" class="headerlink" title="Linux文件排查"></a>Linux文件排查</h2><p>tmp目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmp 目录为临时文件，恶意程序常规下载其他程序时会存放在此处</span><br></pre></td></tr></table></figure>
+
+<p>bash_history文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.bash_history</span><br></pre></td></tr></table></figure>
+
+<p>find命令扩展</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">find：在指定目录下查找文件</span><br><span class="line">-type b/d/c/p/l/f 查是块设备、目录、字符设备、管道、符号、链接、普 通文件</span><br><span class="line">-mtime -n +n 按文件更改时间来查找文件，-n 指 n 天以内，+n 指 n 天前</span><br><span class="line">-atime -n +n 按文件访问时间来查找文件，-n 指 n 天以内，+n 指 n 天前</span><br><span class="line">-ctime -n +n 按文件创建时间来查找文件，-n 指 n 天以内，+n 指 n 天前</span><br><span class="line">-perm 777 查找 777 权限文件</span><br></pre></td></tr></table></figure>
+
+<h2 id="linux日志查看"><a href="#linux日志查看" class="headerlink" title="linux日志查看"></a>linux日志查看</h2><p>以下是linux日志文件位置，也可以通过查看<code>/etc/rsyslog.conf</code> 文件查看当前 Linux 日志存放位置</p>
+<table>
+<thead>
+<tr>
+<th><strong>日志文件</strong></th>
+<th><strong>介绍</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x2F;var&#x2F;log&#x2F;wtmp</td>
+<td>登录进入，退出，数据交换、关机和重启记录等</td>
+</tr>
+<tr>
+<td>&#x2F;var&#x2F;run&#x2F;utmp</td>
+<td>记录有关当前登录的每个用户的信息</td>
+</tr>
+<tr>
+<td>&#x2F;var&#x2F;log&#x2F;lastlog</td>
+<td>记录最近成功登录的事件和最后不成功的登录事件</td>
+</tr>
+<tr>
+<td>&#x2F;var&#x2F;log&#x2F;secure</td>
+<td>记录与安全相关的信息</td>
+</tr>
+<tr>
+<td>&#x2F;var&#x2F;log&#x2F;syslog</td>
+<td>记录警告信息，常常是系统出问题的信息</td>
+</tr>
+<tr>
+<td>&#x2F;var&#x2F;log&#x2F;messages</td>
+<td>包含了系统启动时,以及系统运行时的各种状态消息</td>
+</tr>
+<tr>
+<td>&#x2F;var&#x2F;log&#x2F;maillog</td>
+<td>用户使用哪个系统发送工具或把数据发送到哪个系统</td>
+</tr>
+<tr>
+<td>&#x2F;var&#x2F;log&#x2F;cron</td>
+<td>记录crontab守护进程crond所派生的子进程的动作</td>
+</tr>
+<tr>
+<td>&#x2F;var&#x2F;log&#x2F;boot.log</td>
+<td>记录了系统在引导过程中发生的事件</td>
+</tr>
+<tr>
+<td>&#x2F;var&#x2F;log&#x2F;auth.log</td>
+<td>需要身份确认的操作</td>
+</tr>
+<tr>
+<td>&#x2F;var&#x2F;log&#x2F;kernlog</td>
+<td>记录所有内核消息的功能</td>
+</tr>
+<tr>
+<td>&#x2F;var&#x2F;log&#x2F;xferlog</td>
+<td>记录FTP会话</td>
+</tr>
+<tr>
+<td>&#x2F;var&#x2F;log&#x2F;Xfree86.x.log</td>
+<td>记录了X-Window启动的情况</td>
+</tr>
+<tr>
+<td>&#x2F;var&#x2F;log&#x2F;XFree86.0.log</td>
+<td>记录的是 Xfree86 Xwindows 服务器最后一次执行的结果</td>
+</tr>
+</tbody></table>
+<h4 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h4><p>wtmp和utmp文件都是二进制文件，它们不能被诸如tail之类的命令剪贴或合并（使用cat命令）。用户需要使用who、w、users、last和ac等命令来使用这两个文件包含的信息。</p>
+<h5 id="who命令"><a href="#who命令" class="headerlink" title="who命令"></a>who命令</h5><p>who命令查询utmp文件并报告当前登录的每个用户。who的默认输出包括用户名、终端类型、登录日期及远程主机。例如，键入who命令，然后按回车键，将显示如下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">chyang pts/0 Aug 18 15:06</span><br><span class="line">ynguo pts/2 Aug 18 15:32</span><br><span class="line">ynguo pts/3 Aug 18 13:55</span><br><span class="line">lewis pts/4 Aug 18 13:35</span><br><span class="line">ynguo pts/7 Aug 18 14:12</span><br><span class="line">ylou pts/8 Aug 18 14:15</span><br></pre></td></tr></table></figure>
+
+<p>如果指明了wtmp文件名，则who命令查询所有以前的记录。命令who &#x2F;var&#x2F;log&#x2F;wtmp将报告自从wtmp文件创建或删改以来的每一次登录。</p>
+<h5 id="w命令"><a href="#w命令" class="headerlink" title="w命令"></a>w命令</h5><p>w命令查询utmp文件并显示当前系统中每个用户和它所运行的进程信息。例如，键入w命令，然后按回车键，将显示如下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">3:36pm up 1 day, 22:34, 6 users, load average: 0.23, 0.29, 0.27</span><br><span class="line">USER TTY FROM LOGIN@ IDLE JCPU PCPU WHAT</span><br><span class="line">chyang pts/0 202.38.68.242 3:06pm 2:04 0.08s 0.04s -bash</span><br><span class="line">ynguo pts/2 202.38.79.47 3:32pm 0.00s 0.14s 0.05 w</span><br><span class="line">lewis pts/3 202.38.64.233 1:55pm 30:39 0.27s 0.22s -bash</span><br><span class="line">lewis pts/4 202.38.64.233 1:35pm 6.00s 4.03s 0.01s sh /home/users/</span><br><span class="line">ynguo pts/7 simba.nic.ustc.e 2:12pm 0.00s 0.47s 0.24s telnet mail</span><br><span class="line">ylou pts/8 202.38.64.235 2:15pm 1:09m 0.10s 0.04s -bash</span><br></pre></td></tr></table></figure>
+
+<h5 id="users命令"><a href="#users命令" class="headerlink" title="users命令"></a>users命令</h5><p>users命令用单独的一行打印出当前登录的用户，每个显示的用户名对应一个登录会话。如果一个用户有不止一个登录会话，那他的用户名将显示相同的次数。例如，键入users命令，然后按回车键，将显示如下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chyang lewis lewis ylou ynguo ynguo</span><br></pre></td></tr></table></figure>
+
+<h5 id="last命令"><a href="#last命令" class="headerlink" title="last命令"></a>last命令</h5><p>last命令往回搜索wtmp来显示自从文件第一次创建以来登录过的用户。例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">chyang pts/9 202.38.68.242 Tue Aug 1 08:34 - 11:23 (02:49)</span><br><span class="line">cfan pts/6 202.38.64.224 Tue Aug 1 08:33 - 08:48 (00:14)</span><br><span class="line">chyang pts/4 202.38.68.242 Tue Aug 1 08:32 - 12:13 (03:40)</span><br><span class="line">lewis pts/3 202.38.64.233 Tue Aug 1 08:06 - 11:09 (03:03)</span><br><span class="line">lewis pts/2 202.38.64.233 Tue Aug 1 07:56 - 11:09 (03:12)</span><br></pre></td></tr></table></figure>
+
+<p>如果指明了用户，那么last只报告该用户的近期活动，例如，键入last ynguo命令，然后按回车键，将显示如下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ynguo pts/4 simba.nic.ustc.e Fri Aug 4 16:50 - 08:20 (15:30)</span><br><span class="line">ynguo pts/4 simba.nic.ustc.e Thu Aug 3 23:55 - 04:40 (04:44)</span><br><span class="line">ynguo pts/11 simba.nic.ustc.e Thu Aug 3 20:45 - 22:02 (01:16)</span><br><span class="line">ynguo pts/0 simba.nic.ustc.e Thu Aug 3 03:17 - 05:42 (02:25)</span><br><span class="line">ynguo pts/0 simba.nic.ustc.e Wed Aug 2 01:04 - 03:16 1+02:12)</span><br><span class="line">ynguo pts/0 simba.nic.ustc.e Wed Aug 2 00:43 - 00:54 (00:11)</span><br><span class="line">ynguo pts/9 simba.nic.ustc.e Thu Aug 1 20:30 - 21:26 (00:55)</span><br></pre></td></tr></table></figure>
+
+<h5 id="ac命令"><a href="#ac命令" class="headerlink" title="ac命令"></a>ac命令</h5><p>ac命令根据当前的&#x2F;var&#x2F;log&#x2F;wtmp文件中的登录进入和退出来报告用户连接的时间（小时），如果不使用标志，则报告总的时间。例如，键入ac命令，然后按回车键，将显示如下内容：</p>
+<p>total 5177.47</p>
+<p>键入ac -d命令，然后按回车键，将显示每天的总的连接时间：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Aug 12 total 261.87</span><br><span class="line">Aug 13 total 351.39</span><br><span class="line">Aug 14 total 396.09</span><br><span class="line">Aug 15 total 462.63</span><br><span class="line">Aug 16 total 270.45</span><br><span class="line">Aug 17 total 104.29</span><br><span class="line">Today total 179.02</span><br></pre></td></tr></table></figure>
+
+<p>键入ac -p命令，然后按回车键，将显示每个用户的总的连接时间：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ynguo 193.23</span><br><span class="line">yucao 3.35</span><br><span class="line">rong 133.40</span><br><span class="line">hdai 10.52</span><br><span class="line">zjzhu 52.87</span><br><span class="line">zqzhou 13.14</span><br><span class="line">liangliu 24.34</span><br><span class="line">total 5178.24</span><br></pre></td></tr></table></figure>
+
+<h5 id="lastlog命令"><a href="#lastlog命令" class="headerlink" title="lastlog命令"></a>lastlog命令</h5><p>lastlog 文件在每次有用户登录时被查询。可以使用lastlog命令检查某特 定用户上次登录的时间，并格式化输出上次登录日志 &#x2F;var&#x2F;log&#x2F;lastlog的内容。它根据UID排序显示登录名、端口号（tty）和上次登录时间。如果一个用户从未登录过，lastlog显示 <strong>Never logged</strong>。注意需要以root身份运行该命令，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rong 5 202.38.64.187 Fri Aug 18 15:57:01 +0800 2000</span><br><span class="line">dbb **Never logged in**</span><br><span class="line">xinchen **Never logged in**</span><br><span class="line">pb9511 **Never logged in**</span><br><span class="line">xchen 0 202.38.64.190 Sun Aug 13 10:01:22 +0800 2000</span><br></pre></td></tr></table></figure>
+
+<p>另外，可加一些参数，例如，”last -u 102”命令将报告UID为102的用户；”last -t 7”命令表示限制为上一周的报告。</p>
+<h2 id="Linux网络排查"><a href="#Linux网络排查" class="headerlink" title="Linux网络排查"></a>Linux网络排查</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">netstat -antlp|more		查看网络连接状况</span><br><span class="line"></span><br><span class="line">根据目的IP及端口查找pid</span><br><span class="line">netstat -pantu | grep 114.114.114.114</span><br><span class="line">netstat -pantu | grep 65533</span><br><span class="line">lsof -i:65533</span><br><span class="line"></span><br><span class="line">tcpdump					抓取流量，可放到wireshark等分析平台进行分析</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>参考、扩展</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">https://mp.weixin.qq.com/s/3MJUsGZeVWgOeQ9wx2KylQ</span><br><span class="line">https://bypass007.github.io/Emergency-Response-</span><br><span class="line">Notes/Summary/%E7%AC%AC2%E7%AF%87%EF%BC%9ALinux%E5%85%A5%E4%BE%B5%E6%8E%92%E6%9F%A5.html</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%8F%82%E8%80%83%E8%A7%84%E8%8C%83"><span class="toc-number">1.</span> <span class="toc-text">应急响应参考规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94PDCERF%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">应急响应PDCERF模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E6%AC%B2%E5%96%84%E5%85%B6%E4%BA%8B%EF%BC%8C%E5%BF%85%E5%85%88%E5%88%A9%E5%85%B6%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">工欲善其事，必先利其器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%BF%AB%E9%80%9F%E6%8E%92%E6%9F%A5"><span class="toc-number">4.</span> <span class="toc-text">linux应急响应快速排查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#linux%E5%B8%B8%E8%A7%81%E6%8E%92%E6%9F%A5%E5%91%BD%E4%BB%A4"><span class="toc-number">4.1.</span> <span class="toc-text">linux常见排查命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2"><span class="toc-number">4.2.</span> <span class="toc-text">系统信息查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-number">4.3.</span> <span class="toc-text">用户信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E9%A1%B9"><span class="toc-number">4.4.</span> <span class="toc-text">启动项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">4.5.</span> <span class="toc-text">计划任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E6%9F%A5ssh"><span class="toc-number">4.6.</span> <span class="toc-text">排查ssh</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E8%BF%9B%E7%A8%8B%E6%8E%92%E6%9F%A5"><span class="toc-number">5.</span> <span class="toc-text">Linux进程排查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E6%9F%A5%E8%BF%9B%E7%A8%8B"><span class="toc-number">5.1.</span> <span class="toc-text">排查进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%9F%E8%BF%9B%E8%BF%9B%E7%A8%8B%E5%AF%B9%E5%BA%94%E6%96%87%E4%BB%B6"><span class="toc-number">5.2.</span> <span class="toc-text">跟进进程对应文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%BD%AE%E8%BF%9B%E7%A8%8B"><span class="toc-number">5.3.</span> <span class="toc-text">处置进程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E6%9C%8D%E5%8A%A1%E6%8E%92%E6%9F%A5"><span class="toc-number">6.</span> <span class="toc-text">Linux服务排查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E6%96%87%E4%BB%B6%E6%8E%92%E6%9F%A5"><span class="toc-number">7.</span> <span class="toc-text">Linux文件排查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linux%E6%97%A5%E5%BF%97%E6%9F%A5%E7%9C%8B"><span class="toc-number">8.</span> <span class="toc-text">linux日志查看</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="toc-number">8.0.1.</span> <span class="toc-text">相关命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#who%E5%91%BD%E4%BB%A4"><span class="toc-number">8.0.1.1.</span> <span class="toc-text">who命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#w%E5%91%BD%E4%BB%A4"><span class="toc-number">8.0.1.2.</span> <span class="toc-text">w命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#users%E5%91%BD%E4%BB%A4"><span class="toc-number">8.0.1.3.</span> <span class="toc-text">users命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#last%E5%91%BD%E4%BB%A4"><span class="toc-number">8.0.1.4.</span> <span class="toc-text">last命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ac%E5%91%BD%E4%BB%A4"><span class="toc-number">8.0.1.5.</span> <span class="toc-text">ac命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#lastlog%E5%91%BD%E4%BB%A4"><span class="toc-number">8.0.1.6.</span> <span class="toc-text">lastlog命令</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E7%BD%91%E7%BB%9C%E6%8E%92%E6%9F%A5"><span class="toc-number">9.</span> <span class="toc-text">Linux网络排查</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/&text=攻防渗透思路分享"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/&title=攻防渗透思路分享"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/&is_video=false&description=攻防渗透思路分享"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=攻防渗透思路分享&body=Check out this article: https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/&title=攻防渗透思路分享"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/&title=攻防渗透思路分享"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/&title=攻防渗透思路分享"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/&title=攻防渗透思路分享"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/&name=攻防渗透思路分享&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jysnk.github.io/2023/06/10/Notes/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B9%8Blinux/&t=攻防渗透思路分享"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    whale0k
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
