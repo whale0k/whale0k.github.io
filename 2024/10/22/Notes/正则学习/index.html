@@ -9,7 +9,7 @@
     <meta name="description" content="0x01 前言每次看到工具中的正则表达式，总会不禁疑惑：这真的是人类写出来的吗？为何如此的抽象。尽管过去曾接触并学习过正则，但每次遇到时仍感到一头雾水。因此，这次我打算系统性地整理下正则学习的过程。 0x02 基本概念 定义：正则表达式是一种用于匹配字符串中字符组合的模式。 用途：用于搜索、替换、检查或操作符合特定规则的文本。 组成：由普通字符和元字符构成。 普通字符：直接匹配对应的字符，如 a">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则学习">
-<meta property="og:url" content="https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:url" content="https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="whale0k">
 <meta property="og:description" content="0x01 前言每次看到工具中的正则表达式，总会不禁疑惑：这真的是人类写出来的吗？为何如此的抽象。尽管过去曾接触并学习过正则，但每次遇到时仍感到一头雾水。因此，这次我打算系统性地整理下正则学习的过程。 0x02 基本概念 定义：正则表达式是一种用于匹配字符串中字符组合的模式。 用途：用于搜索、替换、检查或操作符合特定规则的文本。 组成：由普通字符和元字符构成。 普通字符：直接匹配对应的字符，如 a">
 <meta property="og:locale" content="en_US">
@@ -74,9 +74,7 @@
      --><!--
        --><li><a href="/archives/">Writing</a></li><!--
      --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
-     --><!--
-       --><li><a href="/tool/CyberChef">CyberChef</a></li><!--
+       --><li><a href="/tools/">tools</a></li><!--
      -->
       </ul>
     </span>
@@ -85,7 +83,7 @@
       <ul>
         
         
-        <li><a class="icon" aria-label="Next post" href="/2023/08/11/Notes/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B9%8BAPI/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/2024/08/11/Notes/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B9%8BAPI/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -98,17 +96,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&text=正则学习"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&is_video=false&description=正则学习"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=正则学习&body=Check out this article: https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&name=正则学习&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&t=正则学习"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&text=正则学习"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&is_video=false&description=正则学习"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=正则学习&body=Check out this article: https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&name=正则学习&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&t=正则学习"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -306,9 +304,7 @@
         
           <li><a href="/archives/">Writing</a></li>
         
-          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li>
-        
-          <li><a href="/tool/CyberChef">CyberChef</a></li>
+          <li><a href="/tools/">tools</a></li>
         
       </ul>
     </div>
@@ -319,17 +315,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&text=正则学习"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&is_video=false&description=正则学习"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=正则学习&body=Check out this article: https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&name=正则学习&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://jysnk.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&t=正则学习"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&text=正则学习"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&is_video=false&description=正则学习"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=正则学习&body=Check out this article: https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&title=正则学习"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&name=正则学习&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://whale0k.github.io/2024/10/22/Notes/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0/&t=正则学习"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -350,7 +346,7 @@
     Copyright &copy;
     
     
-    2016-2024
+    2016-2025
     whale0k
   </div>
   <div class="footer-right">
@@ -363,9 +359,7 @@
      --><!--
        --><li><a href="/archives/">Writing</a></li><!--
      --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
-     --><!--
-       --><li><a href="/tool/CyberChef">CyberChef</a></li><!--
+       --><li><a href="/tools/">tools</a></li><!--
      -->
       </ul>
     </nav>
